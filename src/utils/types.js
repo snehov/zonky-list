@@ -1,0 +1,2 @@
+export const REQUEST_LOANS = 'REQUEST_LOANS'
+export const RECEIVE_LOANS = 'RECEIVE_LOANS'
