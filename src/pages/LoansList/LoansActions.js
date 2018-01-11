@@ -18,7 +18,7 @@ function receiveLoans(loans) {
 }
 export function fetchLoans() {
   return dispatch => {
-    axios({
+    return axios({
       method: apiSettings.getLoans.method,
       url: apiSettings.getLoans.url,
       /* headers: apiSettings.getLoans.headers, */
@@ -26,7 +26,7 @@ export function fetchLoans() {
       localStorage.setItem('loans', JSON.stringify(res.data))
       dispatch(receiveLoans(res.data))
       //console.log('actions/fetchLoans res=>', res.data)
-      //return res.data
+      return res.data
     })
     // catch any error in the network call.
   }
