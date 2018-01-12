@@ -1,28 +1,39 @@
-.App {
-  text-align: center;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.react-grid-Row--even {
+    background-color: #fff;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.react-grid-Row--odd {
+    background-color: rgba(33, 150, 243, 0.08);
 }
 
-.App-title {
-  font-size: 1.5em;
+.react-grid-Row {
+    height: 53px !important;
+    transition: all 0.3s ease-in-out;
 }
 
-.App-intro {
-  font-size: large;
+.react-grid-Row:hover {
+    background-color: #eee;
+    transition: all 0.2s ease-in-out;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.react-grid-Cell {
+    background-color: transparent !important;
+    height: 37px !important;
+    padding: 8px;
+    border-right: none !important;
+}
+
+.react-grid-Cell:not(.editing) .react-grid-Cell__value {
+    padding-left: 7px !important;
+    padding-right: 5px !important;
+}
+
+.react-grid-HeaderRow {
+    height: 53px !important;
 }
