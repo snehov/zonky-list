@@ -37,3 +37,7 @@ body {
 .react-grid-HeaderRow {
     height: 53px !important;
 }
+
+.react-grid-Row .react-grid-Cell:nth-of-type(7) {
+    display: none;
+}

@@ -3,11 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import { fetchLoans } from './LoansActions'
-import { Link } from 'react-router-dom'
 import ReactDataGrid from 'react-data-grid'
-import { LinkAsButton } from 'components/Elements'
+import { LinkAsButton, Title } from 'components/Elements'
 import { ContainerFluid } from 'components/Layout'
-//import ReactDataGridPlugins from 'react-data-grid/addons';
 import { formatNumber, shorten, replaceStrings } from 'utils/functions'
 
 class LoansList extends React.Component {
@@ -99,7 +97,7 @@ class LoansList extends React.Component {
     } else {
       return (
         <ContainerFluid>
-          <h1>Půjčky na zonky</h1>
+          <Title>Půjčky na zonky</Title>
           <ReactDataGrid
             onGridSort={this.handleGridSort}
             columns={this._columns}

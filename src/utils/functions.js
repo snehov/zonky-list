@@ -45,3 +45,17 @@ export const replaceStrings = (str, findArray, replaceArray) => {
   })
   return str
 }
+export const myDateFormat = inputDate => {
+  const finishDate = new Date(inputDate)
+  return (
+    finishDate.getDate() +
+    '.' +
+    (finishDate.getMonth() + 1) +
+    '.' +
+    finishDate.getFullYear() +
+    '  ' +
+    finishDate.getHours() +
+    ':' +
+    twoDigits(finishDate.getMinutes())
+  )
+}
