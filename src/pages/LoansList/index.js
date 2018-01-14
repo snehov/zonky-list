@@ -6,7 +6,7 @@ import { fetchLoans } from './LoansActions'
 import ReactDataGrid from 'react-data-grid'
 import { LinkAsButton, Title } from 'components/Elements'
 import { ContainerFluid } from 'components/Layout'
-import { formatNumber, shorten, replaceStrings } from 'utils/functions'
+import { formatNumber, shorten, replaceStrings, myDateFormat } from 'utils/functions'
 
 class LoansList extends React.Component {
   constructor(props) {
@@ -18,8 +18,12 @@ class LoansList extends React.Component {
       { key: 'story', name: 'Příběh' },
       { key: 'amount', name: 'Potřeba peněz', width: 150, sortable: true },
       { key: 'duration', name: 'Trvání (měsíce)', width: 150, sortable: true },
-      { key: 'rating', name: 'Rating', width: 65, sortable: true /* sortType: 'rating' */ },
-      { key: 'rating_num', name: 'Rating', width: 0.00001, sortable: true },
+      { key: 'deadline', name: 'Deadline', width: 150, sortable: true },
+      { key: 'rating', name: 'Rating', width: 65, sortable: true },
+
+      { key: 'rating_num', name: '', width: 0.01, sortable: true },
+      { key: 'amount_num', name: '', width: 0.01, sortable: true },
+      { key: 'deadline_num', name: '', width: 0.01, sortable: true },
       { key: 'actions', name: '', width: 160 },
     ]
     this.tableRows = []
@@ -62,7 +66,10 @@ class LoansList extends React.Component {
         rating: loan.rating,
         rating_num: numberRating,
         duration: loan.termInMonths,
+        deadline: myDateFormat(loan.deadline),
+        deadline_num: Date.parse(loan.deadline) / 1000,
         amount: formatNumber(loan.amount, ' Kč'),
+        amount_num: loan.amount,
         actions: <LinkAsButton to={`loan/${loan.id}`}>Ukaž</LinkAsButton>,
       })
     })
@@ -76,6 +83,12 @@ class LoansList extends React.Component {
   handleGridSort = (sortColumn, sortDirection) => {
     if (sortColumn === 'rating') {
       sortColumn = 'rating_num'
+    }
+    if (sortColumn === 'amount') {
+      sortColumn = 'amount_num'
+    }
+    if (sortColumn === 'deadline') {
+      sortColumn = 'deadline_num'
     }
     const comparer = (a, b) => {
       if (sortDirection === 'ASC') {
